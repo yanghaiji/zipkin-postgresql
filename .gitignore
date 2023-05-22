@@ -1,0 +1,3 @@
+# Project exclude paths
+/target/
+/zipkin-storage-postgresql/target/
