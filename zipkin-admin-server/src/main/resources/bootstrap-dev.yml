@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        namespace: a1166541-2bea-43eb-9044-83c34b3b7ac1
+        #要注册的ip地址
+        ip: 127.0.0.1
+        #nacos地址
+        server-addr: 127.0.0.1:8848
+      config:
+        namespace: a1166541-2bea-43eb-9044-83c34b3b7ac1
+        file-extension: yaml
+        #nacos地址
+        server-addr: 127.0.0.1:8848
+
