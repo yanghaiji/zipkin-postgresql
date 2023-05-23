@@ -1,0 +1,88 @@
+server:
+  port: 9411
+
+spring:
+  # 环境 dev|test|prod
+  profiles:
+    active: dev
+  #nacos
+  cloud:
+    nacos:
+      config:
+        #共享的配置文件
+        refreshable-dataids: ${spring.application.name}-${spring.profiles.active}.yaml
+      discovery:
+        register-enabled: false
+  application:
+    name: zipkin-server
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    #解决restful 404错误 spring.mvc.throw-exception-if-no-handler-found=true spring.resources.add-mappings=false
+    throw-exception-if-no-handler-found: true
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/zipkin?rewriteBatchedStatements=true
+    username: postgres
+    password: postgres
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 30
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: ZipkinDatebookHikariCP
+      max-lifetime: 60000
+      connection-timeout: 60000
+      validation-timeout: 5000
+      read-only: false
+      login-timeout: 5
+logging:
+  path: logs/monitoring
+
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
+zipkin:
+  storage:
+    StorageComponent: postgresql
+    type: postgresql
+    postgresql:
+      host: ${PG_HOST:localhost}
+      port: ${PG_TCP_PORT:5432}
+      username: ${PG_USER:postgres}
+      password: ${PG_PASS:postgres}
+      db: ${PG_DB:zipkin}
+      max-active: ${PG_MAX_CONNECTIONS:10}
+      use-ssl: ${PG_USE_SSL:false}
+
+jooq:
+  sql-dialect: POSTGRES
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.javayh.zipkin.admin.**
+  global-config:
+    #数据库相关配置
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID", ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: INPUT
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      field-strategy: NOT_NULL
+      #驼峰下划线转换
+      column-underline: true
+      logic-delete-value: -1
+      logic-not-delete-value: 0
+    banner: false
+  #原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+    aggressive-lazy-loading: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+#    logPrefix: mybatis-log.
