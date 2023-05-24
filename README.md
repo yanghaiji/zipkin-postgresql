@@ -10,6 +10,8 @@
 │   └───sql                         zikin初始化sql
 ├───zipkin-admin-server             zipkin-server 默认登录用户:yanghaiji 密码654321
 ├───zipkin-example                  集成示例
+│   ├───zipkin-example-gateway      api gateway
+│   └───zipkin-example-system       示例业务服务
 └───zipkin-storage-postgresql       zipkin持久化驱动
 
 ```
