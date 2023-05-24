@@ -11,8 +11,9 @@ spring:
       config:
         #共享的配置文件
         refreshable-dataids: ${spring.application.name}-${spring.profiles.active}.yaml
-      discovery:
-        register-enabled: false
+#        是否将服务注册到注册中心
+#      discovery:
+#        register-enabled: false
   application:
     name: zipkin-server
   main:

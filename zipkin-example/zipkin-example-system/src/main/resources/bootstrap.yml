@@ -1,0 +1,31 @@
+server:
+  port: 9413
+  servlet:
+    context-path: /system/api
+spring:
+  # 环境 dev|test|prod
+  profiles:
+    active: dev
+  #nacos
+  cloud:
+    nacos:
+      config:
+        #共享的配置文件
+        refreshable-dataids: ${spring.application.name}-${spring.profiles.active}.yaml
+  application:
+    name: zipkin-example-system
+
+  # sleuth 配置
+  sleuth:
+    web:
+      client:
+        enabled: true
+    sampler:
+      probability: 1.0 # 采样比例为: 0.1(即10%),设置的值介于0.0到1.0之间，1.0则表示全部采集。
+  # zipkin 配置
+  zipkin:
+    base-url: http://${ZIPKIN_HOST:localhost}:${ZIPKIN_PORT:9411}  # 指定了Zipkin服务器的地址
+    # 关闭服务发现，否则Spring Cloud会把zipkin的url当做服务名称
+    discoveryClientEnabled: false
+    sender:
+      type: web  # 设置使用http的方式传输数据

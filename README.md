@@ -1,7 +1,7 @@
 
 ## Zipkin PostgresSQL
 
-> 由于Zipkin不支持Postgres在网上也找了很久，最终发现[https://github.com/tian-junwei/zipkin-storage-postgresql](https://github.com/tian-junwei/zipkin-storage-postgresql) ,并对起进行二次开发和整合
+> 由于Zipkin不支持Postgres在网上也找了很久，最终发现[https://github.com/tian-junwei/zipkin-storage-postgresql](https://github.com/tian-junwei/zipkin-storage-postgresql) 可以实现 ,并对起进行二次开发和整合
 
 ### 项目结构
 
@@ -24,4 +24,28 @@ mvn clean  com.mycila:license-maven-plugin:format install -DskipTests  -Denforce
 
 
 ### zipkin-server
+
+[登录: http://localhost:9411/](http://localhost:9411/)
+
+> username: yanghaiji
+>
+> password: 654321
+
+
+
+访问测试路径[http://localhost:9412/system/api/test/user](http://localhost:9412/system/api/test/user)
+
+- zipkin 首页
+
+![login](doc/img/login.png)
+
+
+- traces
+
+![login](doc/img/20230524095710.png)
+
+
+- dependency
+
+![login](doc/img/20230524095817.png)
 
