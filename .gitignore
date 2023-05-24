@@ -1,6 +1,7 @@
 # Project exclude paths
 /target/
-/zipkin-storage-postgresql/target/
 .idea
 *.iml
 logs
+**/target
+/zipkin-example/**/target
