@@ -29,7 +29,7 @@ mvn clean  com.mycila:license-maven-plugin:format install -DskipTests  -Denforce
 
 ### zipkin-server
 
-[登录: http://localhost:9411/](http://localhost:9411/)
+[login: http://localhost:9411/](http://localhost:9411/)
 
 > username: yanghaiji
 >
